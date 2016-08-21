@@ -5,6 +5,8 @@
  */
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USUARIO
@@ -27,21 +29,128 @@ public class principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtPediatria = new javax.swing.JTextField();
+        txtTraumatologia = new javax.swing.JTextField();
+        txtGinecologia = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
+        cmdBorrar = new javax.swing.JButton();
+        cmdCalcular = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setText("11. Porcentaje presupuestal anual");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel2.setText("30% Traumatología");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setText("40% Ginecología");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setText("Total presupuestal");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setText("30% Pediatría");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+
+        txtPediatria.setEditable(false);
+        getContentPane().add(txtPediatria, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 80, 30));
+
+        txtTraumatologia.setEditable(false);
+        getContentPane().add(txtTraumatologia, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 80, 30));
+
+        txtGinecologia.setEditable(false);
+        getContentPane().add(txtGinecologia, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 80, 30));
+
+        txtTotal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTotalKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 80, 30));
+
+        cmdBorrar.setText("Nuevo");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 70, 20));
+
+        cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 243, 80, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+double presp, gine, trau, pedi;
+String p, g, t;
+
+if(txtTotal.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Digite el presupuesto total","error", JOptionPane.ERROR_MESSAGE);  
+        txtTotal.requestFocusInWindow(); 
+         txtTotal.selectAll();    
+
+     }
+     
+else{
+     presp=Double.parseDouble(txtTotal.getText());
+     
+  gine=(presp*0.4);
+  trau=(presp*0.3);
+  pedi=(presp*0.3);
+
+  g=String.valueOf(gine);
+    txtGinecologia.setText (g);    
+    
+    t=String.valueOf(trau);
+    txtTraumatologia.setText (t);  
+    
+    p=String.valueOf(pedi);
+    txtPediatria.setText(p); 
+
+}
+    
+
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void txtTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalKeyTyped
+char c=evt.getKeyChar(); 
+       
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep();    
+              evt.consume(); 
+          }  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalKeyTyped
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+txtTotal.setText("");
+     txtGinecologia.setText("");
+     txtTraumatologia.setText("");
+     txtPediatria.setText("");
+     txtTotal.requestFocusInWindow();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +188,16 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cmdBorrar;
+    private javax.swing.JButton cmdCalcular;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField txtGinecologia;
+    private javax.swing.JTextField txtPediatria;
+    private javax.swing.JTextField txtTotal;
+    private javax.swing.JTextField txtTraumatologia;
     // End of variables declaration//GEN-END:variables
 }
